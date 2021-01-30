@@ -36,22 +36,18 @@ public class FruitTreeWorldGen implements IWorldGenerator {
         List<TreeGenerationConfiguration> fruitTreesRarity = fruitTreeConfigManager.getFruitTreesInBiomeWithLowerRarity(rarity, biome);
 
         if (fruitTreesRarity.isEmpty()) {
-            //HarvestCraft.log.debug("no fruit available for biome: " + biome.getRegistryName().toString() + " with rarity < " + rarity + ".");
             return;
         }
         int index = random.nextInt(fruitTreesRarity.size());
         if (index < 0) {
-            HarvestCraft.log.debug("is < 0");
             return;
         }
         TreeGenerationConfiguration fruitTree = fruitTreesRarity.get(index);
 
         if (fruitTree == null) {
-            HarvestCraft.log.debug("fruit tree is null");
             return;
         }
 
-//        HarvestCraft.log.debug("generate tree:" + fruitTree.getFruit());
         generateFruitTree(world, random, fruitTree.getFruit(), x, z);
         return;
     }
